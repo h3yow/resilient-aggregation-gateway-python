@@ -64,8 +64,13 @@ def create_app(name: str = "mock") -> FastAPI:
     @app.post("/items")
     async def create_item(payload: dict):
         state["post_items_calls"] += 1
-        logger.info("mock=%s endpoint=POST /items call=%d payload_keys=%s",
-                    name, state["post_items_calls"], list(payload))
+        logger.info("mock=%s endpoint=POST /items call=%d mode=%s payload_keys=%s",
+                    name, state["post_items_calls"], state["mode"], list(payload))
+        if state["mode"] == "sleep":
+            await asyncio.sleep(state["delay"])
+        if state["mode"] == "error":
+            return JSONResponse(status_code=state["status_code"],
+                                content={"error": f"simulated {state['status_code']}"})
         return {"upstream": name, "stored": payload, "seq": state["post_items_calls"]}
 
     @app.get("/__stats__")
