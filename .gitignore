@@ -7,3 +7,10 @@ __pycache__/
 dist/
 build/
 *.egg-info/
+
+# 本地运行产物
+.gateway.log
+.mock.log
+.run-*.log
+.run-*.json
+.run-*.pid
