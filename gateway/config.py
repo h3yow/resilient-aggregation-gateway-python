@@ -19,7 +19,7 @@ from typing import Callable
 #: 单调时钟注入点，便于测试中模拟冷却 / 过期
 Clock = Callable[[], float]
 
-DEFAULT_UPSTREAMS = "alpha=http://127.0.0.1:8101,beta=http://127.0.0.1:8102,gamma=http://127.0.0.1:8103"
+DEFAULT_UPSTREAMS = "alpha=http://127.0.0.1:18101,beta=http://127.0.0.1:18102,gamma=http://127.0.0.1:18103"
 
 
 @dataclass(frozen=True)
